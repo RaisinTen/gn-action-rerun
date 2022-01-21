@@ -27,12 +27,12 @@ jobs:
 
     - name: First build (triggers the action)
       run: |
-        ninja -C out myaction
+        ./ninja-linux -C out myaction
         cat out/obj/output.txt
 
     - name: Second build (does not trigger the action)
       run: |
-        ninja -C out myaction
+        ./ninja-linux -C out myaction
         cat out/obj/output.txt
 
     - name: Modify dep.txt
@@ -43,5 +43,5 @@ jobs:
 
     - name: Third build (does not trigger the action; only runs a stamp)
       run: |
-        ninja -C out myaction
+        ./ninja-linux -C out myaction
         cat out/obj/output.txt
