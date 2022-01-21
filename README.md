@@ -1,1 +1,1 @@
-Gn action does not rebuild depending on data_deps.
+Gn action does not rebuild even when something in `data_deps` changes.
