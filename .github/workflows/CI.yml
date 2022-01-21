@@ -23,16 +23,16 @@ jobs:
         cat dep.txt
 
     - name: Gn gen
-      run: PATH="depot_tools:$PATH" gn gen out
+      run: ./gn-linux gen out
 
     - name: First build (triggers the action)
       run: |
-        PATH="depot_tools:$PATH" ninja -C out myaction
+        ninja -C out myaction
         cat out/obj/output.txt
 
     - name: Second build (does not trigger the action)
       run: |
-        PATH="depot_tools:$PATH" ninja -C out myaction
+        ninja -C out myaction
         cat out/obj/output.txt
 
     - name: Modify dep.txt
@@ -43,5 +43,5 @@ jobs:
 
     - name: Third build (does not trigger the action; only runs a stamp)
       run: |
-        PATH="depot_tools:$PATH" ninja -C out myaction
+        ninja -C out myaction
         cat out/obj/output.txt
