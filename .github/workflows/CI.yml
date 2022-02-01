@@ -25,12 +25,12 @@ jobs:
     - name: Gn gen
       run: ./gn-linux gen out
 
-    - name: First build (triggers the action)
+    - name: First build (triggers the action - expected)
       run: |
         ./ninja-linux -C out write-zip
         cat out/obj/output.zip
 
-    - name: Second build (does not trigger the action)
+    - name: Second build (does not trigger the action - expected)
       run: |
         ./ninja-linux -C out write-zip
         cat out/obj/output.zip
@@ -42,7 +42,7 @@ jobs:
         date > dep.txt
         cat dep.txt
 
-    - name: Third build (does not trigger the action; only runs a stamp)
+    - name: Third build (does not trigger the action; only runs a stamp - unexpected)
       run: |
         ./ninja-linux -C out write-zip
         cat out/obj/output.zip
