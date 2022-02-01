@@ -27,21 +27,22 @@ jobs:
 
     - name: First build (triggers the action)
       run: |
-        ./ninja-linux -C out myaction
-        cat out/obj/output.txt
+        ./ninja-linux -C out write-zip
+        cat out/obj/output.zip
 
     - name: Second build (does not trigger the action)
       run: |
-        ./ninja-linux -C out myaction
-        cat out/obj/output.txt
+        ./ninja-linux -C out write-zip
+        cat out/obj/output.zip
 
     - name: Modify dep.txt
       run: |
         cat dep.txt
+        sleep 1
         date > dep.txt
         cat dep.txt
 
     - name: Third build (does not trigger the action; only runs a stamp)
       run: |
-        ./ninja-linux -C out myaction
-        cat out/obj/output.txt
+        ./ninja-linux -C out write-zip
+        cat out/obj/output.zip

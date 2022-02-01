@@ -15,9 +15,12 @@ copy("dep") {
   outputs = ["$root_build_dir/dep.txt"]
 }
 
-action("myaction") {
-  script = "//myscript.py"
-  outputs = ["$target_out_dir/output.txt"]
-  args = [rebase_path(outputs[0], root_build_dir)]
+action("write-zip") {
+  script = "//write-zip.py"
+  outputs = ["$target_out_dir/output.zip"]
+  args = [
+    rebase_path("$root_build_dir/dep.txt", root_build_dir),
+    rebase_path(outputs[0], root_build_dir)
+  ]
   data_deps = ["//:dep"]
 }
